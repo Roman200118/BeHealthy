@@ -1,0 +1,73 @@
+﻿<Window x:Class="Clinic.UI.PharmacistWindows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.UI.PharmacistWindows"
+        mc:Ignorable="d"
+        Title="Фармацевт" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Каталог">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Поиск" Margin="15,0,0,0"/>
+                            <Button Content="Добавить" Margin="5, 0"/>
+                            <Button Content="Редактировать"/>
+                            <Button Content="Удалить" Margin="5, 0"/>
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="CatalogDataGrid" AutoGenerateColumns="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Наименование"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Count}" Width="*" Header="Остаток"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Country}" Width="*" Header="Страна пр-ва"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Price}" Width="*" Header="Стоимость"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Compound}"  Width="*" Header="Состав"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Grid Grid.Row="2">
+                            <Button x:Name="OrderBtn" Click="OrderBtn_Click" Content="Создать заявку"/>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Продажи">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Найти рецепты по клиенту" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="RecipieDataGrid" AutoGenerateColumns="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Наименование препарата"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Count}" Width="*" Header="Продано шт"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Price}" Width="*" Header="Общая стоимость"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="RecipieOrderBtn" Click="OrderBtn_Click" Content="Оформить покупку"/>
+                            <Button Grid.Column="1" x:Name="NotRecipieOrderBtn" Click="OrderBtn_Click" Content="Оформить покупку без рецепта"/>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

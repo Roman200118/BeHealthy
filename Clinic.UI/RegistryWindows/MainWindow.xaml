@@ -1,0 +1,97 @@
+﻿<Window x:Class="Clinic.UI.RegistryWindows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.UI.RegistryWindows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Регистратура" Height="700" Width="1700">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Карточки">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <TextBox HorizontalAlignment="Left" Width="150px" Height="40px" Margin="10 0 0 0" FontSize="14" x:Name="SearchNameCardTb" TextChanged="SearchCardTb_TextChanged" materialDesign:HintAssist.Hint="Поиск по клиенту" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <TextBox HorizontalAlignment="Left" Width="150px" Height="40px" Margin="170 0 0 0" FontSize="14" x:Name="SearchAddressCardTb" TextChanged="SearchCardTb_TextChanged" materialDesign:HintAssist.Hint="Поиск по адресу" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <Button HorizontalAlignment="Left" x:Name="CreateCardBtn" Click="CreateCardBtn_Click" Width="150px" Margin="350 0 0 0" Content="Создать карточку"/>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,10,0">
+                                <Button x:Name="CreateReferralCardBtn" Click="CreateReferralCardBtn_Click" Margin="10,0" IsEnabled="False" Content="Создать запись на прием"/>
+                                <Button x:Name="CardRecordsBtn" Click="CardRecordsBtn_Click" Content="Просмотр записей карточки" IsEnabled="False"/>
+                            </StackPanel>
+                        </Grid>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="CardsDataGrid" AutoGenerateColumns="False" SelectionMode="Single"
+                                  SelectionChanged="CardsDataGrid_OnSelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Client.ClientName}" Width="*" Header="Клиент"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Client.Address}" Width="*" Header="Адрес клиента"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Doctor.Name}" Width="*" Header="Врач"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding UpdatedAt}" Width="*" Header="Последнее обновление"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Личные кабинеты">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <TextBox HorizontalAlignment="Left" Width="150px" Height="40px" FontSize="14" x:Name="SearchClientTb" TextChanged="SearchClientTb_TextChanged" materialDesign:HintAssist.Hint="Поиск по Ф.И.О." Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,10,0">
+                                <Button x:Name="CreateClientBtn" Click="CreateClientBtn_Click" Content="Создать личный кабинет"/>
+                                <Button x:Name="EditClientBtn" IsEnabled="False" Click="EditClientBtn_Click" Content="Изменить личный кабинет" Margin="10,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" SelectionChanged="ClientsDataGrid_OnSelectionChanged" x:Name="ClientsDataGrid" AutoGenerateColumns="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding ClientName}" Width="*" Header="Ф.И.О."></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Address}" Width="*" Header="Адрес"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Phone}" Width="*" Header="Телефон"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding BirthDate}" Width="*" Header="Дата рождения"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="План приёма">
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <ComboBox SelectionChanged="Selector_OnSelectionChanged" x:Name="DepartmamentCb" HorizontalAlignment="Left" Margin="5,0,0,0" Width="210px" Height="40px" FontSize="14" materialDesign:HintAssist.Hint="Отделение" Style="{StaticResource MaterialDesignComboBox}">
+
+                            </ComboBox>
+                            <ComboBox x:Name="DoctorComboBox" HorizontalAlignment="Left" Width="150px" Margin="220,0,0,0" Height="40px" FontSize="14" materialDesign:HintAssist.Hint="Выбор врача" Style="{StaticResource MaterialDesignComboBox}">
+
+                            </ComboBox>
+                            <DatePicker x:Name="RefferalDatePicker" HorizontalAlignment="Left" Width="150px" Margin="400,0,0,0" materialDesign:HintAssist.Hint="Дата" Style="{StaticResource MaterialDesignDatePicker}"/>
+                            <Button x:Name="ConfirmDoctorBtn" Margin="560,0,0,0" Content="Найти" Width="100px" HorizontalAlignment="Left" Click="ConfirmDoctorBtn_Click"/>
+                            <Button x:Name="RemoveRefferalBtn" Margin="20 0" Content="Удалить запись" Width="200px" IsEnabled="False" HorizontalAlignment="Right" Click="RemoveRefferalBtn_OnClick"/>
+                        </Grid>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="RecordsDataGrid" SelectionChanged="RecordsDataGrid_OnSelectionChanged" AutoGenerateColumns="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding ClientName}" Width="*" Header="Клиент"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Date}"  Width="*" Header="Дата и время приёма"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="Clinic.UI.RegistryWindows.CreateReferralWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.UI.RegistryWindows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Создание записи" Height="650" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0, 10">
+            <ComboBox Margin="10,0,10,0" Width="150px" materialDesign:HintAssist.Hint="Отделение" x:Name="DepartmentComboBox" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            <ComboBox Margin="10,10,10,0" Width="150px" materialDesign:HintAssist.Hint="Врач" x:Name="DoctorComboBox" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            <TextBox Margin="10,10,10,0" Width="150px" materialDesign:HintAssist.Hint="Клиент" IsReadOnly="True" x:Name="ClientComboBox" Style="{StaticResource MaterialDesignTextBox}">
+            </TextBox>
+            <DatePicker Width="150px" x:Name="RecordDatePicker" materialDesign:HintAssist.Hint="Дата" Margin="0, 20" Style="{StaticResource MaterialDesignDatePicker}"/>
+            <materialDesign:TimePicker Width="150px" materialDesign:HintAssist.Hint="Время" Is24Hours="True" x:Name="ReferralTimePicker" SelectedTimeFormat="Long" Margin="0, 0,0, 20" Style="{StaticResource MaterialDesignTimePicker}"/>
+            <Label Content="Причина (необязательно)" Width="150px"/>
+            <TextBox Width="200px" Height="100px"/>
+            <Button Content="Создать" Click="ButtonBase_OnClick" Width="100px" Margin="20"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="0, 10">
+            <Label>Записи на выбранную дату для выбранного врача:</Label>
+            <ListBox FontSize="12" x:Name="RecordsListBox">
+
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>
