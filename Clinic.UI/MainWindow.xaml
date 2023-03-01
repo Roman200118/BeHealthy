@@ -1,0 +1,19 @@
+﻿<Window x:Class="Clinic.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Clinic.UI"
+        mc:Ignorable="d"
+        Title="Вход" Height="350" Width="400">
+    <Grid>
+        <StackPanel Margin="0, 50, 0, 0">
+            <TextBox Width="150px" x:Name="LoginTb" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Width="150px" Margin="0, 30" Text="*********" materialDesign:HintAssist.Hint="Пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            
+            <Button Width="100px" Content="Войти" x:Name="LoginBtn" Click="LoginBtn_Click"/>
+            <Button Width="200px" Margin="0, 30" Content="Восстановить пароль"/>
+        </StackPanel>
+    </Grid>
+</Window>

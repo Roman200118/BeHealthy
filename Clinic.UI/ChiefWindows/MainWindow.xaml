@@ -1,0 +1,78 @@
+﻿<Window x:Class="Clinic.UI.ChiefWindows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.UI.ChiefWindows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Главврач" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Услуги">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <TextBox materialDesign:HintAssist.Hint="Поиск" Height="40px" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Content="Удалить"/>
+                            <Button Content="Добавить" Margin="5,0"/>
+                            <Button Content="Редактировать"/>
+                        </StackPanel>
+                    </Grid>
+                    <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="CatalogDataGrid" AutoGenerateColumns="False" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}" Width="0.2*" Header="№"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Наименование"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Price}" Width="*" Header="Стоимость"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ShortDescription}" Width="*" Header="Короткое описание"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Финансы">
+                <Grid>
+                    <TextBox materialDesign:HintAssist.Hint="Месяц" Height="40px" VerticalAlignment="Top" Text="10.2022" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBlock Text="Бюджет выбранного месяца: 30000" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    <TextBlock Text="Затраты на зарплаты: 12000" Margin="0,60,0,0"/>
+                    <TextBlock Text="Затраты на медикаменты: 8000" Margin="0,90,0,0"/>
+                    <TextBlock Text="Затраты на оборудование: 0" Margin="0,120,0,0"/>
+                    <TextBlock Text="Иные затраты: 1567" Margin="0,150,0,0"/>
+                    <TextBlock Text="Потрачено за месяц: 21 567" Margin="0,180,0,0"/>
+                    <TextBlock Text="Остаток бюджета на месяц: 8433" Margin="0,210,0,0"/>
+                    <TextBlock Text="Доход по услугам за месяц: 1632" Margin="0,270,0,0"/>
+                    <TextBlock Text="Доход по медикаментам за месяц: 662" Margin="0,300,0,0"/>
+                    <TextBlock Text="Доход за месяц: 2 294" Margin="0,330,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Рабочий график">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <TextBox materialDesign:HintAssist.Hint="Поиск" Height="40px" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Content="Редактировать"/>
+                            <Button Content="Отправить в отпуск" Margin="5,0"/>
+                            <Button Content="Отправить на больничный"/>
+                            </StackPanel>
+                        </Grid>
+                        <DataGrid Grid.Row="1" IsReadOnly="true" x:Name="EmployeesDataGrid" AutoGenerateColumns="False" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Employee}" Width="*" Header="Сотрудник"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding EmployeeRank}" Width="*" Header="Должность"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding WorkingDays}" Width="*" Header="Рабочих дней"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding WorkedHours}" Width="*" Header="Рабочих часов"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding WorkedWeekDays}" Width="*" Header="Рабочие дни"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+    </Grid>
+</Window>
